@@ -93,6 +93,7 @@ public abstract class ApiOperationBase<Q extends ANetApiRequest, S extends ANetA
 
 	private void setErrorResponse(ANetApiResponse errorResponse) {
 		this.errorResponse = errorResponse;
+		this.apiResponse = (S) errorResponse;
 	}
 
 	public static Environment getEnvironment() {

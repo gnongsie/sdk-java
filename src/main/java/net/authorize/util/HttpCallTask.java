@@ -11,6 +11,7 @@ import javax.xml.bind.UnmarshalException;
 import net.authorize.Environment;
 import net.authorize.api.contract.v1.ANetApiRequest;
 import net.authorize.api.contract.v1.ANetApiResponse;
+import net.authorize.api.contract.v1.ErrorResponse;
 import net.authorize.api.contract.v1.MessageTypeEnum;
 import net.authorize.api.contract.v1.MessagesType;
 import net.authorize.api.contract.v1.MessagesType.Message;
@@ -117,6 +118,9 @@ public class HttpCallTask implements Callable<ANetApiResponse> {
 					{
 						response = (ANetApiResponse) localResponse;
 					} else {
+						if (localResponse instanceof ErrorResponse) {
+							response = (ErrorResponse) localResponse;
+						}
 						LogHelper.warn( logger, "Unknown ResponseType: '%s'", localResponse);
 					}
 				}
